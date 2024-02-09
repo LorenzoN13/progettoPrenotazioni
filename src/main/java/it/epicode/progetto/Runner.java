@@ -10,8 +10,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Component
@@ -65,5 +67,16 @@ public class Runner implements CommandLineRunner {
         logger.info("Ecco la ricerca delle postazioni: " + ricerca.toString());
 
 
+        Boolean prenotazioneValida = prenotazioneService.prenotazioneValida(p1);
+        Boolean utenteHaGiaPrenotato = prenotazioneService.utenteHaGiaPrenotato(utente, LocalDate.of(2024,02,10));
+
+        if (prenotazioneValida && !utenteHaGiaPrenotato){
+            Prenotazione p2 = ctx.getBean("prenotazione", Prenotazione.class);
+            prenotazioneService.salvaPrenotazione(p2);
+
+            logger.info("Prenotazione effettuata con successo.");
+        } else {
+            logger.error("La prenotazione non è valida");
+        }
     }
 }
