@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>it.epicode</groupId>
-	<artifactId>progetto</artifactId>
+	<artifactId>GestionePrenotazioni</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>progetto</name>
 	<description>Progetto Spring Boot</description>
